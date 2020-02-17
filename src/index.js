@@ -4,5 +4,5 @@ import './index.css';
 import App from './App';
 import store from './Store';
 
-ReactDOM.render(<App store={store} />, document.getElementById('root'));
+ReactDOM.render(<App store={store} />,<App />, document.getElementById('root'));
 

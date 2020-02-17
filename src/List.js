@@ -1,19 +1,34 @@
 import React from 'react';
 import Card from './Card';
-import { tsPropertySignature } from '@babel/types';
+import { tsPropertySignature, thisExpression } from '@babel/types';
 
-function List(props) {
-    return (
-        <div className='List-header'>
-            <h2>{props.header}</h2>
-            <div className='List-cards List-add-button'>
-                {props.cards.map(card => {
-                    console.log(card)
-                    return (<Card {...card}/>)
-                })}
-            </div>
-        </div>
-    );
+function Card(props) {
+  return (
+    <section>
+      <div>
+        {props.cards.map((card) =>
+          <Card
+            key={card.id}
+            id={card.id}
+            title={card.title}
+            content={card.content}
+            onClickDelete={props.onClickDelete}
+          />
+        )}
+        <button
+          type='button'
+          className='List-add-button'
+          onClick={() => props.onClickAdd(props.id)}
+        >
+          + Add Random Card
+        </button>
+      </div>
+    </section>
+  )
 }
 
-export default List;
+List.defaultProps = {
+  onClickAdd: () => {},
+}
+
+export default Card;

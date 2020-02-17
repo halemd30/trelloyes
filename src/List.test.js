@@ -2,21 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Card from './Card';
 import renderer from 'react-test-renderer';
+import { createRenderer } from 'react-dom/test-utils';
 
-describe('<Card />', () => {
-    it('renders Card component', () => {
+describe('<List />', () => {
+    it('renders List component', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<Card />, div);
+        ReactDOM.render(div);
         ReactDOM.unmountComponentAtNode(div);
     })
 
     it('renders the UI as expected', () => {
         const tree = createRenderer
-            .create(<Card 
-                key={'a'}
-                id={'a'}
-                title={'First card'}
-                content={'lorem ipsum umpa loompa'}
+            .create(<List 
+                key={'1'}
+                id={'1'}
+                header={'First list'}
             />)
             .toJSON();
         expect(tree).toMatchSnapshot();
